@@ -7,9 +7,11 @@ export default {
   format: 'umd',
   moduleName: 'Delaunator',
   plugins: [ resolve(),
-  	commonjs({
-  		namedExports: { './delaunator.js': ['smurf'] }
-  })],
+  	commonjs(
+  		{
+  		namedExports: { './delaunator.js': ['Delaunator'] }
+  } 
+  )],
   dest: 'libraries/delaunator.js'
 };
 

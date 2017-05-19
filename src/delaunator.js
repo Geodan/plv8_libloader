@@ -1,1 +1,1 @@
-export {default as Delaunator} from "delaunator";
+export {default} from "delaunator";
