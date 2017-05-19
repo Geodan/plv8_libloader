@@ -8,14 +8,20 @@
     "d3-contour": "^1.1.0",
     "d3-geo": "^1.6.3",
     "d3-hexbin": "^0.2.2",
+    "delaunator": "git+https://github.com/mapbox/delaunator.git",
+    "gdal": "^0.9.4",
     "geotiff": "^0.4.1",
     "topojson": "^3.0.0",
     "topojson-client": "^3.0.0",
     "topojson-simplify": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup.config.delaunator.js"
   },
   "repository": {
     "type": "git",
