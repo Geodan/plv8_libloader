@@ -6,6 +6,7 @@
   "dependencies": {
     "d3": "^4.7.4",
     "d3-contour": "^1.1.0",
+    "d3-force": "^1.0.6",
     "d3-geo": "^1.6.3",
     "d3-hexbin": "^0.2.2",
     "delaunator": "git+https://github.com/tomvantilburg/delaunator.git",

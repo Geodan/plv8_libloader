@@ -1,7 +1,8 @@
-\set d3 `cat ./node_modules/d3/build/d3.min.js`
+\set d3 `cat ./node_modules/d3/build/d3.js`
 \set d3_hexbin `cat ./node_modules/d3-hexbin/build/d3-hexbin.min.js`
 \set d3_contour `cat ./node_modules/d3-contour/build/d3-contour.min.js`
 \set d3_geo `cat ./node_modules/d3-geo/build/d3-geo.min.js`
+\set d3_force `cat ./node_modules/d3-force/build/d3-force.js`
 
 \set topojson `cat ./node_modules/topojson/dist/topojson.min.js`
 \set delaunator `cat ./libraries/delaunator.js`
@@ -16,6 +17,7 @@ postgres.
 create table IF NOT EXISTS plv8_modules(modname text primary key, load_on_start boolean, code text);
 
 insert into plv8_modules values ('d3',true,:'d3') ON CONFLICT (modname) DO UPDATE SET code = :'d3' WHERE plv8_modules.modname = 'd3';
+insert into plv8_modules values ('d3_force',true,:'d3_force') ON CONFLICT (modname) DO UPDATE SET code = :'d3_force' WHERE plv8_modules.modname = 'd3_force';
 insert into plv8_modules values ('d3_geo',true,:'d3_geo') ON CONFLICT (modname) DO UPDATE SET code = :'d3_geo' WHERE plv8_modules.modname = 'd3_geo';
 insert into plv8_modules values ('d3_contour',true,:'d3_contour') ON CONFLICT (modname) DO UPDATE SET code = :'d3_contour' WHERE plv8_modules.modname = 'd3_contour';
 insert into plv8_modules values ('d3_hexbin',true,:'d3_hexbin') ON CONFLICT (modname) DO UPDATE SET code = :'d3_hexbin' WHERE plv8_modules.modname = 'd3_hexbin';
@@ -71,3 +73,44 @@ do language plv8 ' load_module("delaunator"); ';
 do language plv8 $$
 	plv8.elog(NOTICE,'Delaunator is a typeof: ',typeof Delaunator);
 $$;
+
+do language plv8 ' load_module("d3_hexbin"); ';
+do language plv8 $$
+	plv8.elog(NOTICE,'d3.hexbin is a typeof: ',typeof d3.hexbin);
+$$;
+
+do language plv8 ' load_module("d3"); ';
+do language plv8 ' load_module("d3-force"); ';
+do language plv8 $$
+	setTimeout = global.setTimeout;
+	
+	plv8.elog(NOTICE,'d3.forceSimulation is a typeof: ',typeof d3.forceSimulation);
+	var nodes = [
+    {"id": "Myriel", "group": 1},
+    {"id": "Napoleon", "group": 1},
+    {"id": "Mlle.Baptistine", "group": 1},
+    {"id": "Mme.Magloire", "group": 1},
+    {"id": "CountessdeLo", "group": 1},
+    {"id": "Geborand", "group": 1},
+    {"id": "Champtercier", "group": 1},
+    {"id": "Cravatte", "group": 1},
+    {"id": "Count", "group": 1},
+    {"id": "OldMan", "group": 1},
+    {"id": "Labarre", "group": 2},
+    {"id": "Valjean", "group": 2},
+    {"id": "Marguerite", "group": 3},
+    {"id": "Mme.deR", "group": 2},
+    {"id": "Isabeau", "group": 2}];
+	var simulation = d3.forceSimulation(nodes)
+    	.force("charge", d3.forceManyBody().strength(-80))
+    	.force("x", d3.forceX())
+    	.force("y", d3.forceY())
+    	.stop();
+    for (var i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
+		simulation.tick();
+	 }
+	 plv8.elog(NOTICE,nodes);
+$$;
+
+
+
