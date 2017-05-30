@@ -82,7 +82,6 @@ $$;
 do language plv8 ' load_module("d3"); ';
 do language plv8 ' load_module("d3-force"); ';
 do language plv8 $$
-	setTimeout = global.setTimeout;
 	
 	plv8.elog(NOTICE,'d3.forceSimulation is a typeof: ',typeof d3.forceSimulation);
 	var nodes = [
@@ -101,6 +100,7 @@ do language plv8 $$
     {"id": "Marguerite", "group": 3},
     {"id": "Mme.deR", "group": 2},
     {"id": "Isabeau", "group": 2}];
+	/*
 	var simulation = d3.forceSimulation(nodes)
     	.force("charge", d3.forceManyBody().strength(-80))
     	.force("x", d3.forceX())
@@ -110,6 +110,7 @@ do language plv8 $$
 		simulation.tick();
 	 }
 	 plv8.elog(NOTICE,nodes);
+	*/
 $$;
 
 
