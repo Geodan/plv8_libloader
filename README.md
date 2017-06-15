@@ -5,6 +5,7 @@ For loading javascript libraries into PostgreSQL
 ## Prerequisites
 
 PostgreSQL 6.4 with PL/v8 2.0.3 
+
 note: PL/v8 2.0.3 packages not available yet, requires manual build
 
 ## Installing
