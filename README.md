@@ -1,5 +1,5 @@
 # plv8_libloader
-For loading javascript libraries into postgres
+For loading javascript libraries into PostgreSQL
 
 ```
 $ git clone https://github.com/Geodan/plv8_libloader.git
