@@ -11,6 +11,7 @@
     "d3-hexbin": "^0.2.2",
     "delaunator": "git+https://github.com/tomvantilburg/delaunator.git",
     "geotiff": "^0.4.1",
+    "rollup": "^0.43.0",
     "topojson": "^3.0.0"
   },
   "devDependencies": {
