@@ -11,7 +11,7 @@ Load all the js libraries into variables that we can later
 
 \set topojson `cat ./node_modules/topojson/dist/topojson.min.js`
 \set delaunator `cat ./libraries/delaunator.js`
-\set geotiff `cat ./libraries/geotiff.js`
+--\set geotiff `cat ./libraries/geotiff.js`
 --\set geotiff `cat ./node_modules/geotiff/dist/geotiff.browserify.js`
 
 /******************************************************************************
@@ -27,7 +27,7 @@ insert into plv8_modules values ('d3_geo',true,:'d3_geo') ON CONFLICT (modname) 
 insert into plv8_modules values ('d3_contour',true,:'d3_contour') ON CONFLICT (modname) DO UPDATE SET code = :'d3_contour' WHERE plv8_modules.modname = 'd3_contour';
 insert into plv8_modules values ('d3_hexbin',true,:'d3_hexbin') ON CONFLICT (modname) DO UPDATE SET code = :'d3_hexbin' WHERE plv8_modules.modname = 'd3_hexbin';
 insert into plv8_modules values ('topojson',true,:'topojson') ON CONFLICT (modname) DO UPDATE SET code = :'topojson' WHERE plv8_modules.modname = 'topojson';
-insert into plv8_modules values ('geotiff',true,:'geotiff') ON CONFLICT (modname) DO UPDATE SET code = :'geotiff' WHERE plv8_modules.modname = 'geotiff';
+--insert into plv8_modules values ('geotiff',true,:'geotiff') ON CONFLICT (modname) DO UPDATE SET code = :'geotiff' WHERE plv8_modules.modname = 'geotiff';
 insert into plv8_modules values ('delaunator',true,:'delaunator') ON CONFLICT (modname) DO UPDATE SET code = :'delaunator' WHERE plv8_modules.modname = 'delaunator';
 
 
@@ -69,11 +69,12 @@ do language plv8 $$
 	}},1);
 $$;
 
-
+/*
 do language plv8 ' load_module("geotiff"); ';
 do language plv8 $$
 	plv8.elog(NOTICE,'Geotiff is a typeof: ',typeof Geotiff);
 $$;
+*/
 do language plv8 ' load_module("delaunator"); ';
 do language plv8 $$
 	plv8.elog(NOTICE,'Delaunator is a typeof: ',typeof Delaunator);
