@@ -1,3 +1,8 @@
+/******************************************************************************
+Load all the js libraries into variables that we can later
+ insert into our plv8_modules table 
+******************************************************************************/
+
 \set d3 `cat ./node_modules/d3/build/d3.js`
 \set d3_hexbin `cat ./node_modules/d3-hexbin/build/d3-hexbin.min.js`
 \set d3_contour `cat ./node_modules/d3-contour/build/d3-contour.min.js`
